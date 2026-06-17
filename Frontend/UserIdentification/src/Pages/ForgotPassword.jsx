@@ -48,6 +48,11 @@ export function ForgotPassword() {
 }
 
 export function CheckYourEmail() {
+  const navigate = useNavigate();
+  const handleSetPassword = (e) => {
+    e.preventDefault();
+    navigate("/set-new-password");
+  };
   return (
     <div className="check-password-container">
       <div className="check-password-main">
@@ -59,7 +64,9 @@ export function CheckYourEmail() {
             </p>
           </div>
 
-          <button className="open-email-button">Open email app</button>
+          <button className="open-email-button" onClick={handleSetPassword}>
+            Open email app
+          </button>
 
           <div className="divider">
             <hr className="divider-line" />
@@ -87,12 +94,17 @@ export function CheckYourEmail() {
 }
 
 export function SetNewPassword() {
+  const navigate = useNavigate();
+  const handleSetNewPassword = (e) => {
+    e.preventDefault();
+    navigate("/password-reset");
+  };
   return (
     <div className="set-password-container">
       <div className="set-password-main">
         <div className="set-password-form-wrapper">
           <div className="set-new-password-header">
-            <form className="set-password-form">
+            <form className="set-password-form" onSubmit={handleSetNewPassword}>
               <h1>Set New Password</h1>
               <p className="subtitle">Enter your new password below</p>
               <InputField
@@ -117,7 +129,9 @@ export function SetNewPassword() {
                   letter, and one number
                 </p>
               </div>
-              <button className="set-password-button">Reset Password</button>
+              <button className="set-password-button" type="submit">
+                Reset Password
+              </button>
             </form>
             <a href="/login" className="back-to-login-link">
               Back to Login
@@ -130,6 +144,11 @@ export function SetNewPassword() {
 }
 
 export function PasswordReset() {
+  const navigate = useNavigate();
+  const handleContinue = (e) => {
+    e.preventDefault();
+    navigate("/login");
+  };
   return (
     <div className="password-reset-container">
       <div className="password-reset-main">
@@ -138,7 +157,9 @@ export function PasswordReset() {
           Your password has been reset successfully.
           <br /> You can now log in with your new password.
         </p>
-        <button id="continue">Continue</button>
+        <button id="continue" onClick={handleContinue}>
+          Continue
+        </button>
       </div>
     </div>
   );
